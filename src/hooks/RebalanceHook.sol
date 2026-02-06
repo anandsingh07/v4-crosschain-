@@ -40,7 +40,6 @@ contract RebalanceHook is BaseHook {
         SwapParams calldata,
         bytes calldata
     ) internal override returns (bytes4, BeforeSwapDelta, uint24) {
-        // Logic to check pre-swap state could go here
         return (BaseHook.beforeSwap.selector, BeforeSwapDeltaLibrary.ZERO_DELTA, 0);
     }
 
@@ -51,15 +50,6 @@ contract RebalanceHook is BaseHook {
         BalanceDelta,
         bytes calldata
     ) internal override returns (bytes4, int128) {
-        // In a real implementation: check the new tick from PoolManager
-        // If tick is outside optimum range, emit event or trigger logic.
-        
-        // For prototype: we just emit the fact that a swap happened
-        // To get the actual tick requires calling poolManager.getSlot0(key.toId())
-        
-        // (uint160 sqrtPriceX96, int24 tick, , ) = poolManager.getSlot0(key.toId());
-        // emit RebalanceNeeded(address(0), tick);
-        
         return (BaseHook.afterSwap.selector, 0);
     }
 }

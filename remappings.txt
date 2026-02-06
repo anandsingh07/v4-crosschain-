@@ -1,0 +1,14 @@
+@uniswap/v3-core/=lib/v3-core/
+@uniswap/v3-periphery/=lib/v3-periphery/
+@openzeppelin/contracts/=lib/openzeppelin-contracts/contracts/
+v3-periphery/=lib/v3-periphery/
+v3-core/=lib/v3-core/
+@uniswap/v4-core/=lib/v4-core/
+v4-core/=lib/v4-core/
+@uniswap/v4-periphery/=lib/v4-periphery/
+v4-periphery/=lib/v4-periphery/
+@layerzerolabs/lz-evm-oapp-v2/=lib/LayerZero-v2/packages/layerzero-v2/evm/oapp/
+@layerzerolabs/lz-evm-protocol-v2/=lib/LayerZero-v2/packages/layerzero-v2/evm/protocol/
+@layerzerolabs/lz-evm-messagelib-v2/=lib/LayerZero-v2/packages/layerzero-v2/evm/messagelib/
+openzeppelin-contracts/=lib/openzeppelin-contracts/
+forge-std/=lib/forge-std/src/

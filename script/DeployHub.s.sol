@@ -16,11 +16,9 @@ contract DeployHub is Script {
 
         vm.startBroadcast(deployerPrivateKey);
 
-        // 1. Deploy Strategy Manager
         StrategyManager strategyManager = new StrategyManager(owner);
         console.log("StrategyManager deployed at:", address(strategyManager));
 
-        // 2. Deploy Vault
         LiquidityVault vault = new LiquidityVault(
             IERC20(usdc), 
             "CrossChain LP Vault", 
@@ -29,14 +27,12 @@ contract DeployHub is Script {
         );
         console.log("LiquidityVault deployed at:", address(vault));
 
-        // 3. Deploy Bridge
         CrossChainBridge bridge = new CrossChainBridge(lzEndpoint, owner);
         console.log("Hub Bridge deployed at:", address(bridge));
 
-        // 4. Wire expectations
         vault.setStrategyManager(address(strategyManager));
+        vault.setBridge(address(bridge));
         strategyManager.setVault(address(vault));
-        // bridge.setVault(address(vault)); // If bridge needs to know about vault
         
         vm.stopBroadcast();
     }

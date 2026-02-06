@@ -1,50 +1,23 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.26;
 
-import {Ownable} from "openzeppelin-contracts/contracts/access/Ownable.sol";
+import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
 
-/**
- * @title StrategyManager
- * @notice Decides where to deploy liquidity across chains.
- */
 contract StrategyManager is Ownable {
 
-    // ==========================================
-    // Structs
-    // ==========================================
-
     struct Destination {
-        uint32 chainId;      // LayerZero endpoint ID or similar
-        address targetPool;  // Uniswap Pool address on remote chain
-        uint256 weight;      // Allocation weight (basis points)
+        uint32 chainId;
+        address targetPool;
+        uint256 weight;
     }
 
-    // ==========================================
-    // State Variables
-    // ==========================================
-
-    /// @notice List of active destinations
     Destination[] public destinations;
-
-    /// @notice The Vault address that holds funds
     address public vault;
-
-    // ==========================================
-    // Events
-    // ==========================================
 
     event DestinationAdded(uint32 chainId, address pool, uint256 weight);
     event VaultUpdated(address newVault);
 
-    // ==========================================
-    // Constructor
-    // ==========================================
-
     constructor(address _owner) Ownable(_owner) {}
-
-    // ==========================================
-    // Admin Functions
-    // ==========================================
 
     function setVault(address _vault) external onlyOwner {
         vault = _vault;
@@ -59,10 +32,6 @@ contract StrategyManager is Ownable {
         }));
         emit DestinationAdded(_chainId, _pool, _weight);
     }
-
-    // ==========================================
-    // View Functions
-    // ==========================================
 
     function getDestinations() external view returns (Destination[] memory) {
         return destinations;

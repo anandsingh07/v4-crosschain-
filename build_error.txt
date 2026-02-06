@@ -1,0 +1,187 @@
+Compiling 93 files with Solc 0.8.28
+Solc 0.8.28 finished in 9.16s
+Compiler run successful with warnings:
+Warning (5667): Unused function parameter. Remove or comment out the variable name to silence this warning.
+  --> src/bridge/CrossChainBridge.sol:70:9:
+   |
+70 |         bytes32 _guid,
+   |         ^^^^^^^^^^^^^
+
+Warning (5667): Unused function parameter. Remove or comment out the variable name to silence this warning.
+  --> src/bridge/CrossChainBridge.sol:72:9:
+   |
+72 |         address _executor,
+   |         ^^^^^^^^^^^^^^^^^
+
+Warning (5667): Unused function parameter. Remove or comment out the variable name to silence this warning.
+  --> src/bridge/CrossChainBridge.sol:73:9:
+   |
+73 |         bytes calldata _extraData
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (2072): Unused local variable.
+  --> src/bridge/CrossChainBridge.sol:78:13:
+   |
+78 |             uint256 tokenId = abi.decode(payload, (uint256));
+   |             ^^^^^^^^^^^^^^^
+
+Warning (5667): Unused function parameter. Remove or comment out the variable name to silence this warning.
+  --> test/CrossChainBridge.t.sol:17:20:
+   |
+17 |     function quote(MessagingParams calldata _params, address _sender) external view returns (MessagingFee memory) {
+   |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (5667): Unused function parameter. Remove or comment out the variable name to silence this warning.
+  --> test/CrossChainBridge.t.sol:17:54:
+   |
+17 |     function quote(MessagingParams calldata _params, address _sender) external view returns (MessagingFee memory) {
+   |                                                      ^^^^^^^^^^^^^^^
+
+Warning (5667): Unused function parameter. Remove or comment out the variable name to silence this warning.
+  --> test/CrossChainBridge.t.sol:22:9:
+   |
+22 |         MessagingParams calldata _params,
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (5667): Unused function parameter. Remove or comment out the variable name to silence this warning.
+  --> test/CrossChainBridge.t.sol:23:9:
+   |
+23 |         address _refundAddress
+   |         ^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (2018): Function state mutability can be restricted to pure
+  --> src/hooks/RebalanceHook.sol:42:5:
+   |
+42 |     function _beforeSwap(
+   |     ^ (Relevant source part starts here and spans across multiple lines).
+
+Warning (2018): Function state mutability can be restricted to pure
+  --> src/hooks/RebalanceHook.sol:51:5:
+   |
+51 |     function _afterSwap(
+   |     ^ (Relevant source part starts here and spans across multiple lines).
+
+Warning (2018): Function state mutability can be restricted to pure
+  --> test/CrossChainBridge.t.sol:17:5:
+   |
+17 |     function quote(MessagingParams calldata _params, address _sender) external view returns (MessagingFee memory) {
+   |     ^ (Relevant source part starts here and spans across multiple lines).
+
+Warning (2018): Function state mutability can be restricted to pure
+  --> test/CrossChainBridge.t.sol:28:5:
+   |
+28 |     function nativeToken() external view returns (address) {
+   |     ^ (Relevant source part starts here and spans across multiple lines).
+
+note[screaming-snake-case-immutable]: immutables should use SCREAMING_SNAKE_CASE
+  --> src\adapters\UniswapV3Adapter.sol:15:50
+   |
+15 |     INonfungiblePositionManager public immutable positionManager;
+   |                                                  ^^^^^^^^^^^^^^^ help: consider using: `POSITION_MANAGER`
+   |
+   = help: https://book.getfoundry.sh/reference/forge/forge-lint#screaming-snake-case-immutable
+
+note[named-struct-fields]: prefer initializing structs with named fields
+  --> src\bridge\CrossChainBridge.sol:58:13
+   |
+58 |             MessagingFee(msg.value, 0),
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^ help: consider using named fields: `MessagingFee({ nativeFee: msg.value, lzTokenFee: 0 })`
+   |
+   = help: https://book.getfoundry.sh/reference/forge/forge-lint#named-struct-fields
+
+warning[erc20-unchecked-transfer]: ERC20 'transfer' and 'transferFrom' calls should check the return value
+  --> test\LiquidityVault.t.sol:34:9
+   |
+34 |         usdc.transfer(user, 1000 * 10**18);
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = help: https://book.getfoundry.sh/reference/forge/forge-lint#erc20-unchecked-transfer
+
+note[unused-import]: unused imports should be removed
+ --> test\CrossChainBridge.t.sol:6:9
+  |
+6 | import {OApp} from "@layerzerolabs/lz-evm-oapp-v2/contracts/oapp/OApp.sol";
+  |         ^^^^
+  |
+  = help: https://book.getfoundry.sh/reference/forge/forge-lint#unused-import
+
+warning[erc20-unchecked-transfer]: ERC20 'transfer' and 'transferFrom' calls should check the return value
+  --> src\core\LiquidityVault.sol:48:9
+   |
+48 |         IERC20(asset()).transfer(bridge, amount);
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = help: https://book.getfoundry.sh/reference/forge/forge-lint#erc20-unchecked-transfer
+
+note[unused-import]: unused imports should be removed
+ --> test\CrossChainBridge.t.sol:8:44
+  |
+8 | import {MessagingParams, MessagingReceipt, ILayerZeroEndpointV2} from "@layerzerolabs/lz-evm-protocol-v2/contracts/interfaces/ILayerZ...
+  |                                            ^^^^^^^^^^^^^^^^^^^^
+  |
+  = help: https://book.getfoundry.sh/reference/forge/forge-lint#unused-import
+
+warning[erc20-unchecked-transfer]: ERC20 'transfer' and 'transferFrom' calls should check the return value
+  --> src\adapters\UniswapV3Adapter.sol:54:33
+   |
+54 |         if (amount0Desired > 0) IERC20(token0).transferFrom(vault, address(this), amount0Desired);
+   |                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = help: https://book.getfoundry.sh/reference/forge/forge-lint#erc20-unchecked-transfer
+
+warning[erc20-unchecked-transfer]: ERC20 'transfer' and 'transferFrom' calls should check the return value
+  --> src\adapters\UniswapV3Adapter.sol:55:33
+   |
+55 |         if (amount1Desired > 0) IERC20(token1).transferFrom(vault, address(this), amount1Desired);
+   |                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = help: https://book.getfoundry.sh/reference/forge/forge-lint#erc20-unchecked-transfer
+
+note[named-struct-fields]: prefer initializing structs with named fields
+  --> test\CrossChainBridge.t.sol:18:16
+   |
+18 |         return MessagingFee(0, 0);
+   |                ^^^^^^^^^^^^^^^^^^ help: consider using named fields: `MessagingFee({ nativeFee: 0, lzTokenFee: 0 })`
+   |
+   = help: https://book.getfoundry.sh/reference/forge/forge-lint#named-struct-fields
+
+warning[erc20-unchecked-transfer]: ERC20 'transfer' and 'transferFrom' calls should check the return value
+  --> src\adapters\UniswapV3Adapter.sol:87:39
+   |
+87 |         if (amount0 < amount0Desired) IERC20(token0).transfer(vault, amount0Desired - amount0);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = help: https://book.getfoundry.sh/reference/forge/forge-lint#erc20-unchecked-transfer
+
+warning[erc20-unchecked-transfer]: ERC20 'transfer' and 'transferFrom' calls should check the return value
+  --> src\adapters\UniswapV3Adapter.sol:88:39
+   |
+88 |         if (amount1 < amount1Desired) IERC20(token1).transfer(vault, amount1Desired - amount1);
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = help: https://book.getfoundry.sh/reference/forge/forge-lint#erc20-unchecked-transfer
+
+note[named-struct-fields]: prefer initializing structs with named fields
+  --> test\CrossChainBridge.t.sol:25:16
+   |
+25 |         return MessagingReceipt(bytes32(0), 0, MessagingFee(0, 0));
+   |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ help: consider using named fields: `MessagingReceipt({ guid: bytes32(0), nonce: 0, fee: MessagingFee(0, 0) })`
+   |
+   = help: https://book.getfoundry.sh/reference/forge/forge-lint#named-struct-fields
+
+note[named-struct-fields]: prefer initializing structs with named fields
+  --> test\CrossChainBridge.t.sol:25:48
+   |
+25 |         return MessagingReceipt(bytes32(0), 0, MessagingFee(0, 0));
+   |                                                ^^^^^^^^^^^^^^^^^^ help: consider using named fields: `MessagingFee({ nativeFee: 0, lzTokenFee: 0 })`
+   |
+   = help: https://book.getfoundry.sh/reference/forge/forge-lint#named-struct-fields
+
+note[named-struct-fields]: prefer initializing structs with named fields
+  --> test\CrossChainBridge.t.sol:70:32
+   |
+70 |         Origin memory origin = Origin(1, bytes32(uint256(uint160(address(2)))), 1);
+   |                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ help: consider using named fields: `Origin({ srcEid: 1, sender: bytes32(uint256(uint160(address(2)))), nonce: 1 })`
+   |
+   = help: https://book.getfoundry.sh/reference/forge/forge-lint#named-struct-fields
+

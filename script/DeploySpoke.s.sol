@@ -14,16 +14,14 @@ contract DeploySpoke is Script {
 
         vm.startBroadcast(deployerPrivateKey);
 
-        // 1. Deploy Uniswap Adapter
         UniswapV3Adapter adapter = new UniswapV3Adapter(positionManager, owner);
         console.log("UniswapV3Adapter deployed at:", address(adapter));
 
-        // 2. Deploy Bridge
         CrossChainBridge bridge = new CrossChainBridge(lzEndpoint, owner);
         console.log("Spoke Bridge deployed at:", address(bridge));
 
-        // 3. Wire Component
-        adapter.setVault(address(bridge)); // Adapter treats Bridge as the 'Vault' on this chain
+        adapter.setVault(address(bridge)); 
+        bridge.setAdapter(address(adapter));
         
         vm.stopBroadcast();
     }
