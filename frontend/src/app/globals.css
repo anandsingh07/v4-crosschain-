@@ -1,0 +1,65 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+
+  --color-primary: #3b82f6;
+  --color-primary-foreground: #ffffff;
+
+  --color-card: rgba(15, 23, 42, 0.4);
+  --color-border: rgba(255, 255, 255, 0.08);
+}
+
+:root {
+  --background: #030712;
+  /* Deepest gray, almost black */
+  --foreground: #e2e8f0;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans);
+  font-size: 14px;
+  /* Set smaller baseline */
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* More subtle glass effect */
+.glass-panel {
+  background: rgba(10, 10, 10, 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--color-border);
+}
+
+.heading-lg {
+  font-size: 1.5rem;
+  /* 24px */
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: #fff;
+}
+
+.heading-md {
+  font-size: 1.125rem;
+  /* 18px */
+  font-weight: 500;
+  color: #fff;
+}
+
+.text-small {
+  font-size: 0.8125rem;
+  /* 13px */
+  color: #94a3b8;
+}
+
+.text-tiny {
+  font-size: 0.75rem;
+  /* 12px */
+  color: #64748b;
+}
